@@ -60,17 +60,20 @@ $chat_id = null; // Inizializza $chat_id prima del ciclo while
     </div>
     <div>
         <?php
-        echo "<h2>Le tue chat:</h2>";
-        echo "<ul>";
-        while ($row = mysqli_fetch_assoc($res)) {
-            if(isset($_GET['chat_id'])) {
-                $id_chat = $_GET['chat_id'];
+        if(mysqli_num_rows($res) > 0){
+            echo "<h2>Le tue chat:</h2>";
+            echo "<ul>";
+            while ($row = mysqli_fetch_assoc($res)) {
+                if(isset($_GET['chat_id'])) {
+                    $chat_id = $_GET['chat_id'];
+                }
+                $name = $row['name'];
+                $chatid = $row['id'];
+                echo "<li><a href='chat.php?chat_id=$chatid'>$name</a></li>";
+                
             }
-            $name = $row['name'];
-            echo "<li><a href='chat.php?chat_id=$chat_id'>$name</a></li>";
-            
+            echo "</ul>";
         }
-        echo "</ul>";
 
         $conn->close();
         ?>
@@ -78,6 +81,10 @@ $chat_id = null; // Inizializza $chat_id prima del ciclo while
 
     <div id="chat-container">
     <div id="chat-messages"></div>
+
+    <?php
+        if(isset($_GET['chat_id'])) {
+    ?>
 
     <script>
         setInterval(() =>{
@@ -95,6 +102,9 @@ $chat_id = null; // Inizializza $chat_id prima del ciclo while
             xhr.send();
         }, 500);
     </script>
+    <?php
+        }
+    ?>
 
     <?php
     // // Aggiungi il codice per recuperare e visualizzare i messaggi qui
@@ -135,7 +145,7 @@ $chat_id = null; // Inizializza $chat_id prima del ciclo while
     ?>
     <form id="message-form" onsubmit="loadDoc(); return false">
         <input type="text" name="message_content" id="message_content" placeholder="Scrivi un messaggio" required>
-        <input type="hidden" name="chat_id" value="<?php echo $id_chat; ?>">
+        <input type="hidden" name="chat_id" value="<?php echo $chat_id; ?>">
         <input type="submit" value="Invia">
     </form>
     <?php

@@ -22,12 +22,10 @@ $message_content = $_GET['message_content'];
 
 // Inserisci il messaggio con il chat_id corretto
 $sql = "INSERT INTO `message` (`chatid`, `userid`, `content`) VALUES ('$chat_id', '$author_id', '$message_content')";
-$stmt = $conn->prepare($sql);
-// $stmt->bind_param("iiis", $chat_id, $author_id, $message_id, $message_content);
-$stmt->execute();
+$res = mysqli_query($conn, $sql);
 
 // Chiudi la connessione al database
-//$conn->close();
+$conn->close();
 
-//header("Location: ../chat.php?chat_id=$chat_id"); // Reindirizza alla chat corretta
+header("Location: ../chat.php?chat_id=$chat_id"); // Reindirizza alla chat corretta
 ?>
