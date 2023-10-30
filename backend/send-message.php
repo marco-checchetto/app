@@ -10,17 +10,6 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-function generateID($length)
-{
-    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    $charactersLength = strlen($characters);
-    $id = '';
-    for ($i = 0; $i < $length; $i++) {
-        $id .= $characters[rand(0, $charactersLength - 1)];
-    }
-    return $id;
-}
-
 // Recupera il chat_id dalla query string dell'URL (dall'URL)
 // $chat_id = $_GET['chat_id'];
 
@@ -32,7 +21,7 @@ $author_id = $_SESSION['user_id'];
 $message_content = $_GET['message_content'];
 
 // Inserisci il messaggio con il chat_id corretto
-$sql = "INSERT INTO `app` (`chat_id`, `user_id`, `message_id`, `message_content`) VALUES ('$chat_id', '$author_id', '$message_id', '$message_content')";
+$sql = "INSERT INTO `message` (`chatid`, `userid`, `content`) VALUES ('$chat_id', '$author_id', '$message_content')";
 $stmt = $conn->prepare($sql);
 // $stmt->bind_param("iiis", $chat_id, $author_id, $message_id, $message_content);
 $stmt->execute();

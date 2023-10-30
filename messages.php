@@ -17,12 +17,12 @@
     if (isset($_SESSION['chat_id'])) {
         $chat_id = $_SESSION['chat_id'];
         echo $chat_id;
-        $sql = "SELECT * FROM app m JOIN users u ON u.user_id = m.user_id WHERE m.chat_id = '$chat_id' ORDER BY m.message_timestamp";
+        $sql = "SELECT m.content AS mess, u.id AS uid, m.timestamp, u.name AS uname FROM message m JOIN user u ON u.id = m.userid WHERE m.chatid = '$chat_id' ORDER BY m.timestamp";
         $query = mysqli_query($conn, $sql);
         if(mysqli_num_rows($query) > 0){
             while($row = mysqli_fetch_assoc($query)){
-                $message_class = ($row['user_id'] == $user_id) ? 'own-message' : 'other-message';
-                $output .= "<div class='$message_class'>". $row['user_name'] ." > ". $row['message_timestamp'] ." : ". $row['message_content'] ."</div>";
+                $message_class = ($row['uid'] == $user_id) ? 'own-message' : 'other-message';
+                $output .= "<div class='$message_class'>". $row['uname'] ." > ". $row['timestamp'] ." : ". $row['mess'] ."</div>";
             }
         }else{
             $output .= '<div class="text">No messages are available. Once you send message they will appear here.</div>';

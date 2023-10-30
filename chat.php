@@ -21,12 +21,9 @@ if ($conn->connect_error) {
 $user_id = $_SESSION['user_id'];
 $user_name = $_SESSION['user_name'];
 
-$sql = "SELECT chats.chat_id, ref.chat_name FROM chats JOIN users ON chats.user_id = users.user_id JOIN ref ON chats.chat_id = ref.chat_id WHERE users.user_id = ?";
+$sql = "SELECT c.id AS id, c.name AS name FROM chat c JOIN reference r ON c.id = r.chatid JOIN user u ON r.userid = u.id WHERE u.id = '$user_id'";
 
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("i", $user_id); // Utilizza bind_param per passare il valore in modo sicuro
-$stmt->execute();
-$stmt->bind_result($chat_id, $chat_name);
+$res = mysqli_query($conn, $sql);
 
 $chat_id = null; // Inizializza $chat_id prima del ciclo while
 
@@ -65,16 +62,17 @@ $chat_id = null; // Inizializza $chat_id prima del ciclo while
         <?php
         echo "<h2>Le tue chat:</h2>";
         echo "<ul>";
-        while ($stmt->fetch()) {
+        while ($row = mysqli_fetch_assoc($res)) {
             if(isset($_GET['chat_id'])) {
                 $id_chat = $_GET['chat_id'];
             }
-            echo "<li><a href='chat.php?chat_id=$chat_id'>$chat_name</a></li>";
+            $name = $row['name'];
+            echo "<li><a href='chat.php?chat_id=$chat_id'>$name</a></li>";
             
         }
         echo "</ul>";
 
-        $stmt->close();
+        $conn->close();
         ?>
     </div>
 
