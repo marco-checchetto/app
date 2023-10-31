@@ -18,7 +18,7 @@ if ($conn->connect_error) {
 $message_id = uniqid();
 $chat_id = $_SESSION['chat_id'];
 $author_id = $_SESSION['user_id'];
-$message_content = $_GET['message_content'];
+$message_content = $_GET['message'];
 
 // Inserisci il messaggio con il chat_id corretto
 $sql = "INSERT INTO `message` (`chatid`, `userid`, `content`) VALUES ('$chat_id', '$author_id', '$message_content')";

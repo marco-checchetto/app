@@ -147,24 +147,24 @@ $chat_id = null; // Inizializza $chat_id prima del ciclo while
                     ?>
 
                     <script>
-                        window.addEventListener('load', function () {
-                            var element = document.querySelector('#chat');
-                            element.scrollTop = 9999999;
-                        })
-                        setInterval(() => {
-                            let xhr = new XMLHttpRequest();
-                            xhr.open("POST", "messages.php", true);
-                            xhr.onload = () => {
-                                if (xhr.readyState === XMLHttpRequest.DONE) {
-                                    if (xhr.status === 200) {
-                                        let data = xhr.response;
-                                        document.getElementById("chat-messages").innerHTML = data;
-                                    }
-                                }
-                            }
-                            xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                            xhr.send();
-                        }, 500);
+                        // window.addEventListener('load', function () {
+                        //     var element = document.querySelector('#chat');
+                        //     element.scrollTop = 9999999;
+                        // })
+                        // setInterval(() => {
+                        //     let xhr = new XMLHttpRequest();
+                        //     xhr.open("POST", "messages.php", true);
+                        //     xhr.onload = () => {
+                        //         if (xhr.readyState === XMLHttpRequest.DONE) {
+                        //             if (xhr.status === 200) {
+                        //                 let data = xhr.response;
+                        //                 document.getElementById("chat-messages").innerHTML = data;
+                        //             }
+                        //         }
+                        //     }
+                        //     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                        //     xhr.send();
+                        // }, 500);
 
                     </script>
                     <?php
@@ -191,10 +191,10 @@ $chat_id = null; // Inizializza $chat_id prima del ciclo while
 
             <script>
                 function loadDoc() {
-                    let x = document.forms["message-form"]["message_content"].value;
-                    document.getElementById("message_content").value = "";
+                    let x = document.forms["message-form"]["message"].value;
+                    document.getElementById("message").value = "";
                     let xhttp = new XMLHttpRequest();
-                    xhttp.open("GET", "backend/send-message.php?message_content=" + x, true);
+                    xhttp.open("GET", "backend/send-message.php?message=" + x, true);
                     xhttp.onload = () => {
                         if (xhttp.readyState === XMLHttpRequest.DONE) {
                             if (xhttp.status === 200) {
@@ -220,8 +220,7 @@ $chat_id = null; // Inizializza $chat_id prima del ciclo while
             if (isset($_SESSION['chat_id'])) {
                 ?>
                 <form id="message-form" onsubmit="loadDoc(); return false">
-                    <input type="text" name="message_content" id="message_content" placeholder="Scrivi un messaggio"
-                        required>
+                    <input type="text" name="message" id="message" placeholder="Scrivi un messaggio..." autocomplete="off">
                     <input type="hidden" name="chat_id" value="<?php echo $chat_id; ?>">
                     <input id="send_message" type="submit" value="Invia">
                 </form>
@@ -230,6 +229,7 @@ $chat_id = null; // Inizializza $chat_id prima del ciclo while
             ?>
         </div>
     </div>
+    <script src="./js/send.js"></script>
 </body>
 
 </html>

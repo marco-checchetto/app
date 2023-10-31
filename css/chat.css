@@ -161,7 +161,7 @@ ul {
     box-shadow: 0 3px 15px rgba(0, 0, 0, .2);
 }
 
-#message_content {
+#message {
     width: 95%;
     height: 25px;
     border: none;
@@ -181,5 +181,4 @@ ul {
     padding: 7px 5px;
     /* height: 25px; */
     border-radius: 5px;
-    cursor: pointer;
 }
