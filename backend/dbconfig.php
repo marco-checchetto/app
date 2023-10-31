@@ -1,8 +1,8 @@
 <?php
 
-$servername = "192.168.1.20";
-$username = "mattia";
-$password = "admin123";
+$servername = "127.0.0.1";
+$username = "root";
+$password = "";
 $dbname = "chatdb";
 
 ?>

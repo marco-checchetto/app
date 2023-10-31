@@ -24,7 +24,12 @@
             //echo "si";
             while($row = mysqli_fetch_assoc($query)){
                 $message_class = ($row['uid'] == $user_id) ? 'own-message' : 'other-message';
-                $output .= "<div class='$message_class'>". $row['uname'] ." > ". $row['timestamp'] ." : ". $row['mess'] ."</div>";
+                $d=strtotime($row['timestamp']);
+                $output .= "<div class='$message_class message'>";
+                $output .= "<h4>" . $row['uname'] . "</h4>";
+                $output .= "<p>" . $row['mess'] . "</p>";
+                $output .= "<h6> at " . date("H:i", $d) . "</h6>";
+                $output .= "</div>";
             }
         }else{
             //echo "no";

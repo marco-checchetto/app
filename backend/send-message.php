@@ -27,5 +27,5 @@ $res = mysqli_query($conn, $sql);
 // Chiudi la connessione al database
 $conn->close();
 
-header("Location: ../chat.php?chat_id=$chat_id"); // Reindirizza alla chat corretta
+header("Location: ../chat.php"); // Reindirizza alla chat corretta
 ?>
