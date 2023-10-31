@@ -44,9 +44,9 @@ $chat_id = null; // Inizializza $chat_id prima del ciclo while
                 <p id="welcome-name">
                     Hi,<?php echo $user_name; ?>
                 </p>
-                <button>+</button>
+                <button onclick="popup()">+</button>
             </div>
-            <div>
+            <div id="modal">
                 <form action="./backend/create-chat" method="post" id=new-chat-form>
                     <div class="new-chat-text">
                         <label for="chat_name">Chat name:</label>
@@ -104,7 +104,7 @@ $chat_id = null; // Inizializza $chat_id prima del ciclo while
 
                         <?php
 
-                        echo "<li><a href='setVariable.php?chatid=$chatid' class='chat-list'>$name</a><p id='last'></p></li>";
+                        echo "<li><a href='setVariable.php?chatid=$chatid' class='chat-list'>$name<p id='last'></p></a></li>";
 
                     }
                     echo "</ul>";
@@ -230,6 +230,7 @@ $chat_id = null; // Inizializza $chat_id prima del ciclo while
         </div>
     </div>
     <script src="./js/send.js"></script>
+    <script src="./js/modal.js"></script>
 </body>
 
 </html>

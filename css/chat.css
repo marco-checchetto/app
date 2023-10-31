@@ -120,6 +120,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: end;
 }
 
 .message {
@@ -136,10 +137,20 @@ ul {
     padding: 0;
 }
 
+li {
+    padding: 5px 0;
+}
+
 .chat-list {
     text-decoration: none;
+    font-size: .8rem;
     font-weight: 700;
     color: var(--color-text-black);
+}
+
+#last {
+    font-size: .8rem;
+    font-weight: 300;
 }
 
 /* Own message style */
@@ -181,4 +192,8 @@ ul {
     padding: 7px 5px;
     /* height: 25px; */
     border-radius: 5px;
+}
+
+#modal {
+    display: none;
 }
