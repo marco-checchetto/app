@@ -43,5 +43,5 @@ if(/*mysqli_num_rows($res4) > 0*/ false){
 // Chiudi la connessione al database
 $conn->close();
 
-header('Location: ../chat.php'); // Reindirizza alla lista delle chat
+header('Location: ../chat'); // Reindirizza alla lista delle chat
 ?>

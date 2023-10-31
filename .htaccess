@@ -1,0 +1,36 @@
+Options -Indexes
+RewriteEngine On
+
+# Per reindirizzare alle pagine di accesso negato personalizzate
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Rimuovi l'estensione del file dalla barra degli indirizzi
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule ^(.*)$ $1.php [L]
+
+# Pagine di errore personalizzate
+ErrorDocument 400 /app/error/error
+ErrorDocument 401 /app/error/error
+ErrorDocument 402 /app/error/error
+ErrorDocument 403 /app/error/error
+ErrorDocument 404 /app/error/error
+ErrorDocument 405 /app/error/error
+ErrorDocument 406 /app/error/error
+ErrorDocument 407 /app/error/error
+ErrorDocument 408 /app/error/error
+ErrorDocument 409 /app/error/error
+ErrorDocument 410 /app/error/error
+ErrorDocument 411 /app/error/error
+ErrorDocument 412 /app/error/error
+ErrorDocument 413 /app/error/error
+ErrorDocument 414 /app/error/error
+ErrorDocument 415 /app/error/error
+ErrorDocument 500 /app/error/error
+ErrorDocument 501 /app/error/error
+ErrorDocument 502 /app/error/error
+ErrorDocument 503 /app/error/error
+ErrorDocument 504 /app/error/error
+ErrorDocument 505 /app/error/error

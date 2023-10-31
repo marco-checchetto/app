@@ -3,5 +3,5 @@ session_start();
 
 $_SESSION['chat_id'] = $_GET['chatid'];
 
-header("Location: chat.php"); // Reindirizza alla chat corretta
+header("Location: chat"); // Reindirizza alla chat corretta
 ?>
